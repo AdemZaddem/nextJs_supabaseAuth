@@ -5,12 +5,16 @@ import Link from "next/link"
 const DashboardPage = async () => {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
+  const { data: { session } } = await supabase.auth.getSession()
+  console.log("accessToken:", session?.access_token)
+  
 
   return (
     <div>
       <p>This is Dashboard</p>
       <p>Welcome {user?.user_metadata?.name}</p>
       <p>Email: {user?.email}</p>
+      
       <Link href="/dashboard/expenses">Expenses</Link>
       <Link href="/dashboard/add">Add Expense</Link>
       <Link href="/dashboard/settings">Settings</Link>

@@ -5,7 +5,8 @@ import { redirect } from "next/navigation"
 export const register = async(data:{
     name:string,
     email:string,
-    password:string
+    password:string,
+    role:string
 })=>{
     const supabase = await createClient()
     const {error} = await supabase.auth.signUp({
@@ -13,7 +14,8 @@ export const register = async(data:{
         password:data.password,
         options:{
             data:{
-                name:data.name
+                name:data.name,
+                role:data.role
             }
         }
     })
@@ -26,12 +28,13 @@ export const register = async(data:{
 
 export const login = async(data:{
     email:string,
-    password:string
+    password:string,
+    role:string,
 })=>{
     const supabase = await createClient()
     const {error} = await supabase.auth.signInWithPassword({
         email:data.email,
-        password:data.password
+        password:data.password,
     })
 
     if(error) return {error:error.message}
