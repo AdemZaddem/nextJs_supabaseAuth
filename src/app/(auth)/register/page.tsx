@@ -1,4 +1,5 @@
 import RegisterForm from "./register-form"
+export const dynamic = "force-dynamic"
 
 const RegisterPage = () => {
   return (

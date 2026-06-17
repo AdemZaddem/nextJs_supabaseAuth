@@ -16,7 +16,7 @@ const LoginForm = () => {
     setError("");
 
     startTransition(async () => {
-      const result = await login({ email, password, role: "USER" });
+      const result = await login({ email, password});
       if (result?.error) setError(result.error);
     });
   };

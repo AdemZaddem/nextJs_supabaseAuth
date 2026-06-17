@@ -6,7 +6,6 @@ export const register = async(data:{
     name:string,
     email:string,
     password:string,
-    role:string
 })=>{
     const supabase = await createClient()
     const {error} = await supabase.auth.signUp({
@@ -15,13 +14,12 @@ export const register = async(data:{
         options:{
             data:{
                 name:data.name,
-                role:data.role
+                role:"USER"
             }
         }
     })
 
     if(error) return {error:error.message}
-
     redirect("/dashboard")
 }
 
@@ -29,7 +27,6 @@ export const register = async(data:{
 export const login = async(data:{
     email:string,
     password:string,
-    role:string,
 })=>{
     const supabase = await createClient()
     const {error} = await supabase.auth.signInWithPassword({
